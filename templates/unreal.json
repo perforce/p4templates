@@ -1,0 +1,114 @@
+{
+  "name": "default_unreal_template",
+  "depots": [
+    {
+      "name": "{project}_depot",
+      "type": "stream",
+      "depth": "1"
+    }
+  ],
+  "groups": [
+    {
+      "name": "{project}_group",
+      "description": "A group I'll be making and deleting often.",
+      "max_results": "unset",
+      "max_scan_rows": "unset",
+      "max_lock_time": "unset",
+      "max_open_files": "unset",
+      "timeout": "43200",
+      "password_timeout": "unset",
+      "subgroups": "",
+      "owners": [
+        "rmaffesoli"
+      ],
+      "users": [
+        "rmaffesoli"
+      ]
+    }
+
+  ],
+  "users": [
+    {
+      "name": "test_dude",
+      "email": "test1@dude.com",
+      "full_name": "test dude"
+    }
+  ],
+  "streams": [
+    {
+      "depot": "{project}_depot",
+      "name": "{project}_main",
+      "type": "mainline",
+      "ignored": [
+        "*.pyc",
+        "/Intermediate/...",
+        "/Saved/...",
+        "/DerivedDataCache/...",
+        "/Build/..."
+      ]
+    },
+    {
+      "depot": "{project}_depot",
+      "name": "{project}_dev",
+      "type": "development",
+      "parent": "{project}_main",
+      "ignored": [
+        "*.pyc",
+        "/Intermediate/...",
+        "/Saved/...",
+        "/DerivedDataCache/...",
+        "/Build/..."
+      ]
+    }
+  ],
+  "protections": [
+    {
+      "access": "write",
+      "type": "group",
+      "name": "{project}_group",
+      "host": "*",
+      "path": "//{project}_depot/...",
+      "comment": "auto generated"
+    }
+  ],
+  "types": {
+    "binary+S2w": [
+        "//....exe",
+        "//....dll",
+        "//....lib",
+        "//....app",
+        "//....dylib",
+        "//....stub",
+        "//....ipa"
+    ],
+    "binary+l": [
+        "//....uasset",
+        "//....umap",
+        "//....upk",
+        "//....udk",
+        "//....mb",
+        "//....psd",
+        "//....max",
+        "//....blend"
+    ],
+    "binary": [
+        "//....bmp",
+        "//....png",
+        "//....tga",
+        "//....raw",
+        "//....r16",
+        "//....fbx"
+    ],
+    "text": [
+        "//....ini",
+        "//....config",
+        "//....cpp",
+        "//....h",
+        "//....c",
+        "//....cs",
+        "//....m",
+        "//....mm",
+        "//....py"
+    ]
+  }
+}

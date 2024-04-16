@@ -1,0 +1,175 @@
+{
+  "name": "default_unity_template",
+  "depots": [
+    {
+      "name": "{project}_depot",
+      "type": "stream",
+      "depth": "1"
+    }
+  ],
+  "groups": [
+    {
+      "name": "{project}_group",
+      "description": "A group I'll be making and deleting often.",
+      "owners": [
+        "rmaffesoli"
+      ],
+      "users": [
+        "rmaffesoli"
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "depot": "{project}_depot",
+      "name": "{project}_main",
+      "ignored": [
+        "/Library/...",
+        "/Temp/...",
+        "/Obj/...",
+        "/Build/...",
+        "/Builds/...",
+        "/UserSettings/...",
+        "/MemoryCaptures/...",
+        "/Logs/...",
+        "/Assets/AssetStoreTools/...",
+        ".collabignore",
+        ".apk",
+        ".unitypackage",
+        ".gradle",
+        "/Assets/Plugins/Editor/JetBrains/...",
+        ".vs",
+        "/ExportedObj/...",
+        ".consulo",
+        ".csproj",
+        ".unityproj",
+        ".suo",
+        ".tmp",
+        ".user",
+        ".userprefs",
+        ".pidb",
+        ".booproj",
+        ".svd",
+        ".pdb",
+        ".mdb",
+        ".opendb",
+        ".VC.db",
+        ".pidb.meta",
+        ".pdb.meta",
+        ".mdb.meta"
+      ]
+    },
+    {
+      "depot": "{project}_depot",
+      "name": "{project}_dev",
+      "type": "development",
+      "parent": "{project}_main",
+      "ignored": [
+        "/Library/...",
+        "/Temp/...",
+        "/Obj/...",
+        "/Build/...",
+        "/Builds/...",
+        "/UserSettings/...",
+        "/MemoryCaptures/...",
+        "/Logs/...",
+        "/Assets/AssetStoreTools/...",
+        ".collabignore",
+        ".apk",
+        ".unitypackage",
+        ".gradle",
+        "/Assets/Plugins/Editor/JetBrains/...",
+        ".vs",
+        "/ExportedObj/...",
+        ".consulo",
+        ".csproj",
+        ".unityproj",
+        ".suo",
+        ".tmp",
+        ".user",
+        ".userprefs",
+        ".pidb",
+        ".booproj",
+        ".svd",
+        ".pdb",
+        ".mdb",
+        ".opendb",
+        ".VC.db",
+        ".pidb.meta",
+        ".pdb.meta",
+        ".mdb.meta"
+      ]
+    }
+  ],
+  "protections": [
+    {
+      "access": "write",
+      "type": "group",
+      "name": "{project}_group",
+      "host": "*",
+      "path": "//{project}_depot/...",
+      "comment": "auto generated"
+    }
+  ],
+  "types": {
+    "text": [
+      "//....js",
+      "//....cs",
+      "//...shader",
+      "//....meta"
+    ],
+    "text+l" : [
+      "//....cm",
+      "//....proc",
+      "//....md5mesh",
+      "//....md5anim",
+      "//....ma"
+    ],
+    "binary": [
+      "//....dll",
+      "//....exe",
+      "//....response",
+      "//....lib",
+      "//....pdb",
+      "//....u",
+      "//....ini",
+      "//....stub",
+      "//....ip"
+    ],
+    "binary+l" : [
+      "//....prefab",
+      "//....mb",
+      "//....mat",
+      "//....psb",
+      "//....mp3",
+      "//....fbx",
+      "//....unity",
+      "//....asset",
+      "//....aas",
+      "//....tga",
+      "//....jpg",
+      "//....lwo",
+      "//....wav",
+      "//....ogg",
+      "//....demo",
+      "//....roq",
+      "//....doc",
+      "//....xls",
+      "//....celtx",
+      "//....pdf",
+      "//....odt",
+      "//....ods",
+      "//....ppt",
+      "//....skp"
+    ],
+    "binary+lS": [
+      "//....dds",
+      "//....bnk",
+      "//....light",
+      "//....shadow",
+      "//....ibl",
+      "//....bik",
+      "//....upk"
+    ]
+  }
+}

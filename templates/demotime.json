@@ -1,0 +1,179 @@
+{
+    "name": "Demotime",
+    "depots": [
+        {
+            "name": "{project}_depot",
+            "type": "stream",
+            "depth": "1"
+        },
+        {
+            "name": "{test}_NewDepot",
+            "type": "stream",
+            "depth": "1",
+            "user": ""
+        },
+        {
+            "name": "NewDepot1"
+        },
+        {
+            "name": "NewDepot2"
+        }
+    ],
+    "groups": [
+        {
+            "name": "{project}_group",
+            "description": "A group I'll be making and deleting often.",
+            "max_results": "unset",
+            "max_scan_rows": "unset",
+            "max_lock_time": "unset",
+            "max_open_files": "unset",
+            "timeout": "43200",
+            "password_timeout": "unset",
+            "subgroups": "",
+            "owners": [
+                "rmaffesoli"
+            ],
+            "users": [
+                "rmaffesoli",
+                "test_dude"
+            ]
+        }
+    ],
+    "streams": [
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_main",
+            "type": "mainline"
+        },
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_dev",
+            "type": "development",
+            "parent": "{project}_main"
+        },
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_approval",
+            "type": "development",
+            "parent": "{project}_main"
+        },
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_dev_2",
+            "type": "development",
+            "parent": "{project}_approval",
+            "ignored": [
+                "*.pyc",
+                ".gitignore",
+                "/things_i_hate/..."
+            ]
+        },
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_task",
+            "type": "task",
+            "parent": "{project}_dev"
+        },
+        {
+            "depot": "{project}_depot",
+            "name": "{project}_dev_virtual",
+            "type": "virtual",
+            "parent": "{project}_dev_2",
+            "paths": [
+                "share ..."
+            ],
+            "view": "inherit",
+            "options": "allsubmit unlocked notoparent nofromparent mergedown"
+        }
+    ],
+    "users": [
+        {
+            "name": "test_dude",
+            "email": "test1@dude.com",
+            "full_name": "test dude"
+        },
+        {
+            "name": "NewUser"
+        },
+        {
+            "name": "NewUser1"
+        },
+        {
+            "name": "NewUser2"
+        },
+        {
+            "name": "NewUser3"
+        }
+    ],
+    "protections": [
+        {
+            "access": "write",
+            "type": "group",
+            "name": "{project}_group",
+            "host": "*",
+            "path": "//{project}_depot/...",
+            "comment": "auto generated"
+        },
+        {
+            "name": "NewProtection"
+        },
+        {
+            "name": "NewProtection1"
+        },
+        {
+            "name": "NewProtection2"
+        },
+        {
+            "name": "NewProtection3"
+        }
+    ],
+    "branches": [
+        {
+            "name": "{project}_populate",
+            "options": [
+                "unlocked"
+            ],
+            "view": {
+                "//populate_demo/main/old_project/...": "//{project}_depot/{project}_main/{project}/...",
+                "//populate_demo/main/old_project/old_project.py": "//{project}_depot/{project}_main/{project}/{project}.py"
+            }
+        }
+    ],
+    "types": {
+        "binary+S2w": [
+            "//....exe",
+            "//....dll",
+            "//....lib",
+            "//....app",
+            "//....dylib",
+            "//....stub",
+            "//....ipa"
+        ],
+        "binary+l": [
+            "//....uasset",
+            "//....umap",
+            "//....upk",
+            "//....udk"
+        ],
+        "binary": [
+            "//....bmp",
+            "//....png",
+            "//....tga",
+            "//....raw",
+            "//....r16",
+            "//....mb",
+            "//....fbx"
+        ],
+        "text": [
+            "//....ini",
+            "//....config",
+            "//....cpp",
+            "//....h",
+            "//....c",
+            "//....cs",
+            "//....m",
+            "//....mm",
+            "//....py"
+        ]
+    }
+}

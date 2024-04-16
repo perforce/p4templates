@@ -1,0 +1,1 @@
+pyinstaller --onefile --distpath .\bin -n "p4_template" .\p4_template_tool.py

@@ -1,0 +1,18 @@
+{
+    "name": "Demotime",
+    "depots": [],
+    "groups": [],
+    "streams": [],
+    "users": [
+        {
+            "name": "test_only_username",
+            "email": "test1@dude.com",
+            "full_name": "test dude",
+            "auth_method": "",
+            "reviews": "",
+            "job_view": ""
+        }
+    ],
+    "protections": [],
+    "branches": []
+}
