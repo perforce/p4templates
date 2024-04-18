@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.utils import (
+from p4templates.kernel.utils import (
     load_server_config,
     setup_server_connection,
     set_default,
@@ -32,7 +32,7 @@ class MockP4(object):
 
 
 def test_load_server_config(mocker):
-    m_read_json = mocker.patch("p4_templates.kernel.utils.read_json")
+    m_read_json = mocker.patch("p4templates.kernel.utils.read_json")
 
     load_server_config("a/fake/config/path.json")
 
@@ -51,7 +51,7 @@ def test_load_server_config(mocker):
 def test_setup_server_connection(
     mocker, port, user, password, charset, connect_called, run_login_called
 ):
-    mocker.patch("p4_templates.kernel.utils.P4", return_value=MockP4())
+    mocker.patch("p4templates.kernel.utils.P4", return_value=MockP4())
     p4_connection = setup_server_connection(port, user, password, charset)
 
     if not connect_called and not run_login_called:
@@ -80,9 +80,9 @@ def test_set_default():
 
 def test_write_json(mocker):
     m_open = mocker.patch(
-        "p4_templates.kernel.utils.open", mocker.mock_open(read_data="{'fake':'data'}")
+        "p4templates.kernel.utils.open", mocker.mock_open(read_data="{'fake':'data'}")
     )
-    m_json_dump = mocker.patch("p4_templates.kernel.utils.json.dump")
+    m_json_dump = mocker.patch("p4templates.kernel.utils.json.dump")
 
     write_json({"fake": "data"}, "/a/fake/output/path.json")
 
@@ -98,9 +98,9 @@ def test_write_json(mocker):
 
 def test_read_json(mocker):
     m_open = mocker.patch(
-        "p4_templates.kernel.utils.open", mocker.mock_open(read_data="{'fake':'data'}")
+        "p4templates.kernel.utils.open", mocker.mock_open(read_data="{'fake':'data'}")
     )
-    m_json_load = mocker.patch("p4_templates.kernel.utils.json.load", return_value= {'fake':'data'})
+    m_json_load = mocker.patch("p4templates.kernel.utils.json.load", return_value= {'fake':'data'})
 
     read_json("/a/fake/output/path.json")
 
@@ -136,9 +136,9 @@ def test_convert_to_string(input, expected_result):
 
 
 def test_gather_existing_template_names(mocker):
-    m_os_path_isdir = mocker.patch('p4_templates.kernel.utils.os.path.isdir', return_value=True)
-    m_os_walk = mocker.patch('p4_templates.kernel.utils.os.walk', return_value=[('a/fake/root/', ('a/fake/dir',), ('fake.json',)),])
-    m_read_json = mocker.patch('p4_templates.kernel.utils.read_json', return_value={'name':'demo'})
+    m_os_path_isdir = mocker.patch('p4templates.kernel.utils.os.path.isdir', return_value=True)
+    m_os_walk = mocker.patch('p4templates.kernel.utils.os.walk', return_value=[('a/fake/root/', ('a/fake/dir',), ('fake.json',)),])
+    m_read_json = mocker.patch('p4templates.kernel.utils.read_json', return_value={'name':'demo'})
 
     expected_result = {'demo': 'a/fake/root/fake.json'}
 

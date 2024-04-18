@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.edit_typemap import (
+from p4templates.kernel.edit_typemap import (
     get_typemap,
     add_type,
     save_typemap,
@@ -68,9 +68,9 @@ def test_save_typemap(dryrun, expected_result):
 
 def test_append_new_typemap_entry(mocker):
     m_server = MockP4()
-    m_get_typemap = mocker.patch('p4_templates.kernel.edit_typemap.get_typemap')
-    m_add_type = mocker.patch('p4_templates.kernel.edit_typemap.add_type')
-    m_save_typemap = mocker.patch('p4_templates.kernel.edit_typemap.save_typemap')
+    m_get_typemap = mocker.patch('p4templates.kernel.edit_typemap.get_typemap')
+    m_add_type = mocker.patch('p4templates.kernel.edit_typemap.add_type')
+    m_save_typemap = mocker.patch('p4templates.kernel.edit_typemap.save_typemap')
 
     append_new_typemap_entry({"text": {'//....py'}}, m_server)
 

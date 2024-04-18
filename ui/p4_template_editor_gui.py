@@ -16,7 +16,7 @@ from PyQt6.QtWidgets import (
     QFileDialog,
 )
 
-from p4_templates.kernel.utils import read_json, convert_to_string, write_json
+from p4templates.kernel.utils import read_json, convert_to_string, write_json
 
 
 class GetTypeNameDialog(QDialog):
@@ -55,6 +55,7 @@ class P4TemplateEditorDialog(QDialog):
     def __init__(self, parent=None, template_path=None):
         super(P4TemplateEditorDialog, self).__init__(parent)
         self.template_path = template_path
+        self.template_data = {}
         self.item_load = False
         self.defaults = {
             "depot": {
@@ -472,7 +473,7 @@ class P4TemplateEditorDialog(QDialog):
         file_name, _ = QFileDialog.getSaveFileName(
             self, "Save File", self.template_path, "Text Files(*.json)"
         )
-        print(file_name)
+
         if file_name:
             write_json(self.template_data, file_name)
 
@@ -492,7 +493,9 @@ class P4TemplateEditorDialog(QDialog):
         self.depot_table.clear()
 
         if not self.template_data.get("depots", []):
+            self.item_load = False
             return
+            
 
         depot_index = self.depot_list.currentRow()
         for i, key in enumerate(["name", "type", "depth", "user"]):
@@ -591,6 +594,7 @@ class P4TemplateEditorDialog(QDialog):
         group_index = self.group_list.currentRow()
 
         if not self.template_data.get("groups", []):
+            self.item_load = False
             return
 
         for i, key in enumerate(
@@ -704,6 +708,7 @@ class P4TemplateEditorDialog(QDialog):
         user_index = self.user_list.currentRow()
 
         if not self.template_data.get("users", []):
+            self.item_load = False
             return
 
         for i, key in enumerate(
@@ -808,6 +813,7 @@ class P4TemplateEditorDialog(QDialog):
         self.stream_ignored_table.clear()
 
         if not self.template_data.get("streams", []):
+            self.item_load = False
             return
 
         stream_index = self.stream_list.currentRow()
@@ -950,6 +956,7 @@ class P4TemplateEditorDialog(QDialog):
         current_stream_index = self.template_data["streams"].index(current_stream)
 
         table_values = []
+        print(self.stream_paths_table.rowCount())
         for i in range(self.stream_paths_table.rowCount()):
             if not self.stream_paths_table.item(i, 0):
                 continue
@@ -962,10 +969,6 @@ class P4TemplateEditorDialog(QDialog):
         if table_values:
             self.template_data["streams"][current_stream_index]["paths"] = table_values
 
-        print(
-            len(self.template_data["streams"][current_stream_index].get("paths", [])),
-            self.template_data["streams"][current_stream_index].get("paths", []),
-        )
         self.stream_paths_table.setRowCount(
             len(self.template_data["streams"][current_stream_index].get("paths", []))
             + 1
@@ -1068,6 +1071,7 @@ class P4TemplateEditorDialog(QDialog):
         protection_index = self.protection_list.currentRow()
 
         if not self.template_data.get("protections", []):
+            self.item_load = False
             return
 
         for i, key in enumerate(["access", "type", "name", "host", "path", "comment"]):
@@ -1229,6 +1233,7 @@ class P4TemplateEditorDialog(QDialog):
 
         current_type = self.typemap_type_list.currentItem()
         if not current_type:
+            self.item_load = False
             return
         current_type = current_type.text()
 
@@ -1288,6 +1293,7 @@ class P4TemplateEditorDialog(QDialog):
 
         branch_index = self.branch_list.currentRow()
         if not self.template_data.get("branches", []):
+            self.item_load = False
             return
 
         for i, key in enumerate(["name", "owner", "options"]):

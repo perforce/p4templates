@@ -1,7 +1,7 @@
 {
     "server":{
-        "port": "ssl:helix:1666",
-        "user": "rmaffesoli",
+        "port": "ssl:helixcore:1666",
+        "user": "username",
         "password": null,
         "charset": "none"
     },

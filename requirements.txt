@@ -1,11 +1,2 @@
-altgraph==0.17.4
 p4python==2023.2.2581979
-packaging==24.0
-pefile==2023.2.7
-pyinstaller==6.5.0
-pyinstaller-hooks-contrib==2024.3
 PyQt6==6.6.1
-PyQt6-Qt6==6.6.3
-PyQt6-sip==13.6.0
-pywin32-ctypes==0.2.2
-setuptools==69.2.0

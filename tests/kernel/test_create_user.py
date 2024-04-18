@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.create_user import create_user
+from p4templates.kernel.create_user import create_user
 
 class MockP4(object):
     def __init__(self, user_exists=0):

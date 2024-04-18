@@ -11,8 +11,8 @@ from PyQt6.QtWidgets import (
     QTableWidgetItem,
     QHeaderView,
 )
-from p4_templates.ui.p4_template_editor_gui import P4TemplateEditorDialog
-from p4_templates.kernel.utils import (
+from p4templates.ui.p4_template_editor_gui import P4TemplateEditorDialog
+from p4templates.kernel.utils import (
     gather_existing_template_names,
     gather_parameters,
     read_json,
@@ -21,7 +21,7 @@ from p4_templates.kernel.utils import (
     load_server_config,
     setup_server_connection,
 )
-from p4_templates.kernel.process_template import process_template
+from p4templates.kernel.process_template import process_template
 
 
 class P4TemplateLoaderDialog(QDialog):

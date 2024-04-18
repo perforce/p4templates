@@ -7,18 +7,18 @@ from __future__ import print_function
 from argparse import ArgumentParser
 import os
 
-from p4_templates.kernel.create_depot import create_depot
-from p4_templates.kernel.create_stream import create_stream
-from p4_templates.kernel.create_group import create_group
-from p4_templates.kernel.create_user import create_user
-from p4_templates.kernel.create_branch import (
+from p4templates.kernel.create_depot import create_depot
+from p4templates.kernel.create_stream import create_stream
+from p4templates.kernel.create_group import create_group
+from p4templates.kernel.create_user import create_user
+from p4templates.kernel.create_branch import (
     create_branch,
     populate_branch,
     delete_branch,
 )
-from p4_templates.kernel.edit_permissions import append_new_protections
-from p4_templates.kernel.edit_typemap import append_new_typemap_entry
-from p4_templates.kernel.utils import (
+from p4templates.kernel.edit_permissions import append_new_protections
+from p4templates.kernel.edit_typemap import append_new_typemap_entry
+from p4templates.kernel.utils import (
     read_json,
     gather_parameters,
     substitute_parameters,

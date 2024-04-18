@@ -19,10 +19,10 @@
       "password_timeout": "unset",
       "subgroups": "",
       "owners": [
-        "rmaffesoli"
+        "test_dude"
       ],
       "users": [
-        "rmaffesoli"
+        "test_dude"
       ]
     }
 

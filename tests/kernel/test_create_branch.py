@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.create_branch import create_branch, populate_branch, delete_branch
+from p4templates.kernel.create_branch import create_branch, populate_branch, delete_branch
 
 class MockP4(object):
     def __init__(self, ):

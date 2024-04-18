@@ -1,2 +1,2 @@
-python -m pytest --cov-config=.coveragerc --cov=p4_templates --cov-report=html -v
-coveralls
+python -m pytest --cov-config=.coveragerc --cov=p4templates --cov-report=html -v
+@REM coveralls

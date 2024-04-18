@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.edit_permissions import (
+from p4templates.kernel.edit_permissions import (
     get_protections_table,
     validate_protection,
     prepend_protection,
@@ -130,10 +130,10 @@ def test_save_protections_table(protection_table, dryrun, expected_result):
 
 def test_append_new_protections(mocker):
     m_server = MockP4()
-    m_get_protections_table = mocker.patch('p4_templates.kernel.edit_permissions.get_protections_table', return_value='existing_protection')
-    m_validate_protection = mocker.patch('p4_templates.kernel.edit_permissions.validate_protection', return_value=True)
-    m_prepend_protection = mocker.patch('p4_templates.kernel.edit_permissions.prepend_protection', return_value=['existing_protection', 'new_protection'])
-    m_save_protections_table = mocker.patch('p4_templates.kernel.edit_permissions.save_protections_table')
+    m_get_protections_table = mocker.patch('p4templates.kernel.edit_permissions.get_protections_table', return_value='existing_protection')
+    m_validate_protection = mocker.patch('p4templates.kernel.edit_permissions.validate_protection', return_value=True)
+    m_prepend_protection = mocker.patch('p4templates.kernel.edit_permissions.prepend_protection', return_value=['existing_protection', 'new_protection'])
+    m_save_protections_table = mocker.patch('p4templates.kernel.edit_permissions.save_protections_table')
 
     new_protections = ['new_protection']
 

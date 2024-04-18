@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.create_group import create_group
+from p4templates.kernel.create_group import create_group
 
 class MockP4(object):
     def __init__(self, ):

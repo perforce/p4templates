@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.create_depot import create_depot
+from p4templates.kernel.create_depot import create_depot
 
 class MockP4(object):
     def __init__(self, ):

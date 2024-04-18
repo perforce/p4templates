@@ -98,11 +98,13 @@ def convert_to_string(input, delimiter=" "):
 
 
 def gather_existing_template_names(template_folder_path="./templates"):
+    print('template_folder_path:', template_folder_path)
     template_lut = {}
     if os.path.isdir(template_folder_path):
         for dir_name, _, files in os.walk(template_folder_path):
             files = [_ for _ in files if _.lower().endswith(".json")]
             for template_file in files:
+                print('loading template', template_file)
                 identifier = template_file.replace(".json", "")
                 template_data = read_json(os.path.join(dir_name, template_file))
                 template_name = template_data.get("name", "")

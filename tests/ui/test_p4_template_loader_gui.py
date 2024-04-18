@@ -1,5 +1,5 @@
 import pytest
-from p4_templates.ui.p4_template_loader_gui import P4TemplateLoaderDialog
+from p4templates.ui.p4_template_loader_gui import P4TemplateLoaderDialog
 
 from PyQt6.QtWidgets import (
     QVBoxLayout,
@@ -12,7 +12,7 @@ def test_P4TemplateLoaderDialog_init(qtbot,mocker):
     m_set_window_settings = mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     m_reload_ui = mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     m_exec = mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
     P4TLG = P4TemplateLoaderDialog()
     qtbot.addWidget(P4TLG)
@@ -32,11 +32,11 @@ def test_P4TemplateLoaderDialog_create_ui_elements(qtbot, mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
-    m_QComboBox = mocker.patch('p4_templates.ui.p4_template_loader_gui.QComboBox')
-    m_QPushButton = mocker.patch('p4_templates.ui.p4_template_loader_gui.QPushButton')
-    m_QTableWidget = mocker.patch('p4_templates.ui.p4_template_loader_gui.QTableWidget')
+    m_QComboBox = mocker.patch('p4templates.ui.p4_template_loader_gui.QComboBox')
+    m_QPushButton = mocker.patch('p4templates.ui.p4_template_loader_gui.QPushButton')
+    m_QTableWidget = mocker.patch('p4templates.ui.p4_template_loader_gui.QTableWidget')
 
     push_calls = [
         mocker.call('New'),
@@ -59,10 +59,10 @@ def test_P4TemplateLoaderDialog_update_parameters_populated(qtbot, mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.read_json', return_value='data')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
+    mocker.patch('p4templates.ui.p4_template_loader_gui.read_json', return_value='data')
     
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')    
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')    
     
     m_validate_parameters = mocker.patch.object(P4TemplateLoaderDialog, 'validate_parameters')
 
@@ -96,10 +96,10 @@ def test_P4TemplateLoaderDialog_update_parameters_empty(qtbot, mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.read_json', return_value='data')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
+    mocker.patch('p4templates.ui.p4_template_loader_gui.read_json', return_value='data')
     
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')    
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')    
     
     m_validate_parameters = mocker.patch.object(P4TemplateLoaderDialog, 'validate_parameters')
 
@@ -137,7 +137,7 @@ def test_P4TemplateLoaderDialog_validate_parameters(qtbot, mocker, parameters, v
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
     P4TLG = P4TemplateLoaderDialog()
     qtbot.addWidget(P4TLG)
@@ -154,10 +154,10 @@ def test_P4TemplateLoaderDialog_update_parameters_table(mocker, qtbot):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
     
-    m_gather_parameters = mocker.patch('p4_templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
-    m_read_json = mocker.patch('p4_templates.ui.p4_template_loader_gui.read_json', return_value='data')
+    m_gather_parameters = mocker.patch('p4templates.ui.p4_template_loader_gui.gather_parameters', return_value=['test'])
+    m_read_json = mocker.patch('p4templates.ui.p4_template_loader_gui.read_json', return_value='data')
     m_validate_parameters = mocker.patch.object(P4TemplateLoaderDialog, 'validate_parameters')
 
     P4TLG = P4TemplateLoaderDialog()
@@ -208,8 +208,8 @@ def test_P4TemplateLoaderDialog_update_template_combobox(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
-    m_gather_existing_template_names = mocker.patch('p4_templates.ui.p4_template_loader_gui.gather_existing_template_names', return_value={'file1': 'path1', 'file2': 'path2'})
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
+    m_gather_existing_template_names = mocker.patch('p4templates.ui.p4_template_loader_gui.gather_existing_template_names', return_value={'file1': 'path1', 'file2': 'path2'})
 
     
     P4TLG = P4TemplateLoaderDialog()
@@ -233,7 +233,7 @@ def test_P4TemplateLoaderDialog_add_ui_elements_to_layout(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
     
     P4TLG = P4TemplateLoaderDialog()
     assert isinstance(P4TLG.main_layout, QVBoxLayout)
@@ -245,7 +245,7 @@ def test_P4TemplateLoaderDialog_set_window_settings(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'connect_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
     P4TemplateLoaderDialog()
 
@@ -255,7 +255,7 @@ def test_P4TemplateLoaderDialog_connect_ui(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
     P4TLG = P4TemplateLoaderDialog()
 
@@ -267,8 +267,8 @@ def test_P4TemplateLoaderDialog_edit_current_template(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     m_reload_ui = mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
-    m_P4TemplateEditorDialog = mocker.patch('p4_templates.ui.p4_template_loader_gui.P4TemplateEditorDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
+    m_P4TemplateEditorDialog = mocker.patch('p4templates.ui.p4_template_loader_gui.P4TemplateEditorDialog')
 
     P4TLG = P4TemplateLoaderDialog()
 
@@ -292,8 +292,8 @@ def test_P4TemplateLoaderDialog_edit_new_template(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     m_reload_ui = mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
-    m_P4TemplateEditorDialog = mocker.patch('p4_templates.ui.p4_template_loader_gui.P4TemplateEditorDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
+    m_P4TemplateEditorDialog = mocker.patch('p4templates.ui.p4_template_loader_gui.P4TemplateEditorDialog')
 
     P4TLG = P4TemplateLoaderDialog()
 
@@ -316,12 +316,12 @@ def test_P4TemplateLoaderDialog_process(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'reload_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
-    m_substitute_parameters = mocker.patch('p4_templates.ui.p4_template_loader_gui.substitute_parameters', return_value='substituted_template_data')
-    m_setup_server_connection = mocker.patch('p4_templates.ui.p4_template_loader_gui.setup_server_connection', return_value='p4_connection')
-    m_load_server_config = mocker.patch('p4_templates.ui.p4_template_loader_gui.load_server_config', return_value={'server': {'key':'value'}})
-    m_process_template = mocker.patch('p4_templates.ui.p4_template_loader_gui.process_template')
+    m_substitute_parameters = mocker.patch('p4templates.ui.p4_template_loader_gui.substitute_parameters', return_value='substituted_template_data')
+    m_setup_server_connection = mocker.patch('p4templates.ui.p4_template_loader_gui.setup_server_connection', return_value='p4_connection')
+    m_load_server_config = mocker.patch('p4templates.ui.p4_template_loader_gui.load_server_config', return_value={'server': {'key':'value'}})
+    m_process_template = mocker.patch('p4templates.ui.p4_template_loader_gui.process_template')
 
     P4TLG = P4TemplateLoaderDialog()
 
@@ -343,7 +343,7 @@ def test_P4TemplateLoaderDialog_reload_ui(mocker):
     mocker.patch.object(P4TemplateLoaderDialog, 'connect_ui')
     mocker.patch.object(P4TemplateLoaderDialog, 'set_window_settings')
     mocker.patch.object(P4TemplateLoaderDialog, 'exec')
-    mocker.patch('p4_templates.ui.p4_template_loader_gui.QDialog')
+    mocker.patch('p4templates.ui.p4_template_loader_gui.QDialog')
 
     m_update_template_combobox = mocker.patch.object(P4TemplateLoaderDialog, 'update_template_combobox')
     m_update_parameters_table = mocker.patch.object(P4TemplateLoaderDialog, 'update_parameters_table')

@@ -1,6 +1,6 @@
 import pytest
 
-from p4_templates.kernel.create_stream import create_stream
+from p4templates.kernel.create_stream import create_stream
 
 class MockP4(object):
     def __init__(self, ):

@@ -1,6 +1,6 @@
 import pytest
 from collections import namedtuple
-from p4_templates.kernel.process_template import (
+from p4templates.kernel.process_template import (
     process_template,
     get_template_preset,
     main,
@@ -39,20 +39,20 @@ class MockArgumentParser(object):
 )
 def test_process_template(mocker, dry_run):
     m_append_new_typemap_entry = mocker.patch(
-        "p4_templates.kernel.process_template.append_new_typemap_entry"
+        "p4templates.kernel.process_template.append_new_typemap_entry"
     )
     m_append_new_protections = mocker.patch(
-        "p4_templates.kernel.process_template.append_new_protections"
+        "p4templates.kernel.process_template.append_new_protections"
     )
-    m_create_user = mocker.patch("p4_templates.kernel.process_template.create_user")
-    m_create_depot = mocker.patch("p4_templates.kernel.process_template.create_depot")
-    m_create_group = mocker.patch("p4_templates.kernel.process_template.create_group")
-    m_create_stream = mocker.patch("p4_templates.kernel.process_template.create_stream")
-    m_create_branch = mocker.patch("p4_templates.kernel.process_template.create_branch")
+    m_create_user = mocker.patch("p4templates.kernel.process_template.create_user")
+    m_create_depot = mocker.patch("p4templates.kernel.process_template.create_depot")
+    m_create_group = mocker.patch("p4templates.kernel.process_template.create_group")
+    m_create_stream = mocker.patch("p4templates.kernel.process_template.create_stream")
+    m_create_branch = mocker.patch("p4templates.kernel.process_template.create_branch")
     m_populate_branch = mocker.patch(
-        "p4_templates.kernel.process_template.populate_branch"
+        "p4templates.kernel.process_template.populate_branch"
     )
-    m_delete_branch = mocker.patch("p4_templates.kernel.process_template.delete_branch")
+    m_delete_branch = mocker.patch("p4templates.kernel.process_template.delete_branch")
     m_server = MockP4()
 
     template = {
@@ -69,8 +69,8 @@ def test_process_template(mocker, dry_run):
                 "timeout": "43200",
                 "password_timeout": "unset",
                 "subgroups": "",
-                "owners": ["rmaffesoli"],
-                "users": ["rmaffesoli"],
+                "owners": ["test_dude"],
+                "users": ["test_dude"],
             }
         ],
         "users": [
@@ -164,8 +164,8 @@ def test_process_template(mocker, dry_run):
         timeout="43200",
         password_timeout="unset",
         subgroups="",
-        owners=["rmaffesoli"],
-        users=["rmaffesoli"],
+        owners=["test_dude"],
+        users=["test_dude"],
         dryrun=dry_run,
     )
     m_create_stream.assert_called_once_with(
@@ -209,7 +209,7 @@ def test_process_template(mocker, dry_run):
 
 def test_get_template_preset(mocker):
     m_gather_existing_template_names = mocker.patch(
-        "p4_templates.kernel.process_template.gather_existing_template_names",
+        "p4templates.kernel.process_template.gather_existing_template_names",
         return_value={"template_name": "template_data"},
     )
     result = get_template_preset("template_name", "/a/fake/template/dir")
@@ -230,29 +230,29 @@ def test_get_template_preset(mocker):
 )
 def test_main(mocker, given_args):
     m_get_template_preset = mocker.patch(
-        "p4_templates.kernel.process_template.get_template_preset", return_value="a/template/file/path.json"
+        "p4templates.kernel.process_template.get_template_preset", return_value="a/template/file/path.json"
     )
     m_os_path_isfile = mocker.patch(
-        "p4_templates.kernel.process_template.os.path.isfile"
+        "p4templates.kernel.process_template.os.path.isfile"
     )
-    m_read_json = mocker.patch("p4_templates.kernel.process_template.read_json")
+    m_read_json = mocker.patch("p4templates.kernel.process_template.read_json")
     m_gather_parameters = mocker.patch(
-        "p4_templates.kernel.process_template.gather_parameters", return_value={'key': 'value'}
+        "p4templates.kernel.process_template.gather_parameters", return_value={'key': 'value'}
     )
     m_substitute_parameters = mocker.patch(
-        "p4_templates.kernel.process_template.substitute_parameters"
+        "p4templates.kernel.process_template.substitute_parameters"
     )
     m_setup_server_connection = mocker.patch(
-        "p4_templates.kernel.process_template.setup_server_connection"
+        "p4templates.kernel.process_template.setup_server_connection"
     )
     m_load_server_config = mocker.patch(
-        "p4_templates.kernel.process_template.load_server_config", return_value={'server':{'config':'values'}}
+        "p4templates.kernel.process_template.load_server_config", return_value={'server':{'config':'values'}}
     )
     m_process_template = mocker.patch(
-        "p4_templates.kernel.process_template.process_template"
+        "p4templates.kernel.process_template.process_template"
     )
     mocker.patch(
-        "p4_templates.kernel.process_template.ArgumentParser",
+        "p4templates.kernel.process_template.ArgumentParser",
         return_value=MockArgumentParser(given_args),
     )
     
