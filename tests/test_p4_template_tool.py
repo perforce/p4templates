@@ -1,3 +1,19 @@
+#    p4templates - custom tooling to quickly create Helix Core depot/stream/group/permission setups.
+#    Copyright (C) 2024 Perforce Software, Inc.
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import pytest
 from  p4_templates.p4_template_tool import main
 from collections import namedtuple
@@ -39,12 +55,12 @@ def test_main(mocker, given_args, config_values, dir_exists_values):
     main()
 
     path_exists_calls = [
-        mocker.call('config'), 
+        mocker.call('config'),
         mocker.call('template_dir')
     ]
 
     abspath_calls = [
-        mocker.call('config'), 
+        mocker.call('config'),
         mocker.call('template_dir')
     ]
 
@@ -66,4 +82,3 @@ def test_main(mocker, given_args, config_values, dir_exists_values):
         m_P4TemplateLoaderDialog.assert_called_once_with(config_path='abs_path', template_dir='template_dir')
     else:
         m_P4TemplateLoaderDialog.assert_called_once_with(config_path='config', template_dir='template_dir')
-    
