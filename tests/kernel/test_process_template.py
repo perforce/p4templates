@@ -1,3 +1,19 @@
+#    p4templates - custom tooling to quickly create Helix Core depot/stream/group/permission setups.
+#    Copyright (C) 2024 Perforce Software, Inc.
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import pytest
 from collections import namedtuple
 from p4templates.kernel.process_template import (
@@ -258,7 +274,7 @@ def test_main(mocker, given_args):
         "p4templates.kernel.process_template.ArgumentParser",
         return_value=MockArgumentParser(given_args),
     )
-    
+
     main()
 
     read_calls = [
@@ -270,7 +286,7 @@ def test_main(mocker, given_args):
         m_get_template_preset.assert_not_called()
     else:
         m_get_template_preset.assert_called_once_with('template_name')
-    
+
     if not (given_args.template or given_args.name):
         m_read_json.assert_not_called()
     else:
