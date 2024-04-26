@@ -8,8 +8,10 @@ from P4 import P4
 
 
 def load_server_config(config_path="config.json"):
+    config = {}
     if validate_json(config_path):
-        return read_json(config_path)
+        config =  read_json(config_path)
+    return config
 
 
 def setup_server_connection(port=None, user=None, password=None, charset="none"):
@@ -61,6 +63,7 @@ def read_json(json_path):
     """
     Reads a json file in to a dictionary.
     """
+    data_dict = {}
     with open(json_path) as json_file:
         data_dict = json.load(json_file)
     return data_dict
@@ -113,10 +116,11 @@ def gather_existing_template_names(template_folder_path="./templates"):
         for dir_name, _, files in os.walk(template_folder_path):
             files = [_ for _ in files if _.lower().endswith(".json")]
             for template_file in files:
-                if validate_json(template_file):
+                template_path = os.path.join(dir_name, template_file)
+                if validate_json(template_path):
                     print('loading template', template_file)
                     identifier = template_file.replace(".json", "")
-                    template_data = read_json(os.path.join(dir_name, template_file))
+                    template_data = read_json(template_path)
                     template_name = template_data.get("name", "")
 
                     if template_name and template_name not in template_lut:
