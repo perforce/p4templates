@@ -233,7 +233,10 @@ def test_main(mocker, given_args):
         "p4templates.kernel.process_template.get_template_preset", return_value="a/template/file/path.json"
     )
     m_os_path_isfile = mocker.patch(
-        "p4templates.kernel.process_template.os.path.isfile"
+        "p4templates.kernel.process_template.os.path.isfile", return_value=True
+    )
+    m_validate_json = mocker.patch(
+        "p4templates.kernel.process_template.validate_json", return_value=True
     )
     m_read_json = mocker.patch("p4templates.kernel.process_template.read_json")
     m_gather_parameters = mocker.patch(
@@ -258,6 +261,11 @@ def test_main(mocker, given_args):
     
     main()
 
+    read_calls = [
+        mocker.call("a/template/file/path.json"), 
+        mocker.call().__bool__()
+    ]
+
     if given_args.template or not given_args.name:
         m_get_template_preset.assert_not_called()
     else:
@@ -266,7 +274,7 @@ def test_main(mocker, given_args):
     if not (given_args.template or given_args.name):
         m_read_json.assert_not_called()
     else:
-        m_read_json.assert_called_once_with("a/template/file/path.json")
+        m_read_json.assert_has_calls(read_calls)
 
     if not (given_args.template or given_args.name):
         m_gather_parameters.assert_not_called()

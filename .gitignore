@@ -3,8 +3,8 @@
 .p4config
 config.json
 .coveralls.yml
-/bin/templates/
-/bin/.config
+bin/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -8,7 +8,8 @@ from P4 import P4
 
 
 def load_server_config(config_path="config.json"):
-    return read_json(config_path)
+    if validate_json(config_path):
+        return read_json(config_path)
 
 
 def setup_server_connection(port=None, user=None, password=None, charset="none"):
@@ -65,6 +66,14 @@ def read_json(json_path):
     return data_dict
 
 
+def validate_json(json_path):
+    try:
+        read_json(json_path)
+    except Exception:
+        print('JSON file read error:', json_path)
+        return False
+    return True
+
 def gather_parameters(input, found_parameters=None):
     if isinstance(input, dict):
         input = json.dumps(input, default=set_default, indent=4, sort_keys=True)
@@ -104,15 +113,16 @@ def gather_existing_template_names(template_folder_path="./templates"):
         for dir_name, _, files in os.walk(template_folder_path):
             files = [_ for _ in files if _.lower().endswith(".json")]
             for template_file in files:
-                print('loading template', template_file)
-                identifier = template_file.replace(".json", "")
-                template_data = read_json(os.path.join(dir_name, template_file))
-                template_name = template_data.get("name", "")
+                if validate_json(template_file):
+                    print('loading template', template_file)
+                    identifier = template_file.replace(".json", "")
+                    template_data = read_json(os.path.join(dir_name, template_file))
+                    template_name = template_data.get("name", "")
 
-                if template_name and template_name not in template_lut:
-                    identifier = template_name
+                    if template_name and template_name not in template_lut:
+                        identifier = template_name
 
-                template_lut[identifier] = os.path.join(dir_name, template_file)
+                    template_lut[identifier] = os.path.join(dir_name, template_file)
 
     return template_lut
 

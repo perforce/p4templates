@@ -20,6 +20,7 @@ from p4templates.kernel.edit_permissions import append_new_protections
 from p4templates.kernel.edit_typemap import append_new_typemap_entry
 from p4templates.kernel.utils import (
     read_json,
+    validate_json,
     gather_parameters,
     substitute_parameters,
     gather_existing_template_names,
@@ -180,7 +181,8 @@ def main():
         template_filename = ""
 
     if template_filename and os.path.isfile(template_filename):
-        template = read_json(template_filename)
+        if validate_json(template_filename):
+            template = read_json(template_filename)
 
     if template:
         given_parameters = {}

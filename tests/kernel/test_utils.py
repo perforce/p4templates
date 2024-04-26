@@ -6,11 +6,17 @@ from p4templates.kernel.utils import (
     set_default,
     write_json,
     read_json,
+    validate_json,
     gather_parameters,
     substitute_parameters,
     convert_to_string,
     gather_existing_template_names,
 )
+
+def mock_read(value):
+    if value == 'fail':
+        raise Exception()
+    return {'yep':'good'}
 
 
 class MockP4(object):
@@ -33,10 +39,13 @@ class MockP4(object):
 
 def test_load_server_config(mocker):
     m_read_json = mocker.patch("p4templates.kernel.utils.read_json")
+    m_validate_json = mocker.patch("p4templates.kernel.utils.validate_json", return_value=True)
 
     load_server_config("a/fake/config/path.json")
 
+    m_validate_json.assert_called_once_with("a/fake/config/path.json")
     m_read_json.assert_called_once_with("a/fake/config/path.json")
+    
 
 
 @pytest.mark.parametrize(
@@ -108,6 +117,21 @@ def test_read_json(mocker):
     m_json_load.assert_called_once_with(m_open.return_value)
 
 
+@pytest.mark.parametrize(
+    "read_value,expected_result",
+    [
+        ('a/fake/json/path.json', True),
+        ('fail', False),
+    ],
+)
+def test_validate_json(mocker, read_value, expected_result):
+    mocker.patch('p4templates.kernel.utils.read_json', mock_read)
+    
+    result = validate_json(read_value)
+    
+    assert result == expected_result
+
+
 def test_gather_parameters():
     test_dict = {'name': r"{template}_{parameter}"}
     result = gather_parameters(test_dict)
@@ -139,7 +163,8 @@ def test_gather_existing_template_names(mocker):
     m_os_path_isdir = mocker.patch('p4templates.kernel.utils.os.path.isdir', return_value=True)
     m_os_walk = mocker.patch('p4templates.kernel.utils.os.walk', return_value=[('a/fake/root/', ('a/fake/dir',), ('fake.json',)),])
     m_read_json = mocker.patch('p4templates.kernel.utils.read_json', return_value={'name':'demo'})
-
+    m_validate_json = mocker.patch('p4templates.kernel.utils.validate_json', return_value=True)
+    
     expected_result = {'demo': 'a/fake/root/fake.json'}
 
     result = gather_existing_template_names()
