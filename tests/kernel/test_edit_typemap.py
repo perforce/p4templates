@@ -28,13 +28,10 @@ class MockP4(object):
     def __init__(
         self,
     ):
-        self.typemap = {
-            "TypeMap": ["text //....py"]
-        }
+        self.typemap = {"TypeMap": ["text //....py"]}
 
         self.fetch_called = 0
         self.save_called = 0
-
 
     def fetch_typemap(self):
         self.fetch_called = 1
@@ -49,7 +46,18 @@ class MockP4(object):
 def test_get_typemap():
     m_server = MockP4()
 
-    expected_result = {"text": {'//....py'}}
+    expected_result = {"text": {"//....py"}}
+
+    result = get_typemap(m_server)
+
+    assert result == expected_result
+
+
+def test_get_typemap_empty_typemap():
+    m_server = MockP4()
+    m_server.typemap = {}
+
+    expected_result = {}
 
     result = get_typemap(m_server)
 
@@ -58,23 +66,23 @@ def test_get_typemap():
 
 def test_add_type():
     type_dict = {}
-    expected_result = {"text": {'//....py'}}
+    expected_result = {"text": {"//....py"}}
 
-    result = add_type(type_dict, 'text', '//....py')
+    result = add_type(type_dict, "text", "//....py")
 
     assert result == expected_result
 
 
 @pytest.mark.parametrize(
-    'dryrun,expected_result',
+    "dryrun,expected_result",
     [
         (True, {"TypeMap": ["text //....py"]}),
-        (False, {"TypeMap": ["text //....py", "text //....txt"]})
-    ]
+        (False, {"TypeMap": ["text //....py", "text //....txt"]}),
+    ],
 )
 def test_save_typemap(dryrun, expected_result):
     m_server = MockP4()
-    type_dict = {"text": {'//....py', '//....txt'}}
+    type_dict = {"text": {"//....py", "//....txt"}}
 
     save_typemap(type_dict, m_server, dryrun)
 
@@ -84,12 +92,12 @@ def test_save_typemap(dryrun, expected_result):
 
 def test_append_new_typemap_entry(mocker):
     m_server = MockP4()
-    m_get_typemap = mocker.patch('p4templates.kernel.edit_typemap.get_typemap')
-    m_add_type = mocker.patch('p4templates.kernel.edit_typemap.add_type')
-    m_save_typemap = mocker.patch('p4templates.kernel.edit_typemap.save_typemap')
+    m_get_typemap = mocker.patch("p4templates.kernel.edit_typemap.get_typemap")
+    m_add_type = mocker.patch("p4templates.kernel.edit_typemap.add_type")
+    m_save_typemap = mocker.patch("p4templates.kernel.edit_typemap.save_typemap")
 
-    append_new_typemap_entry({"text": {'//....py'}}, m_server)
+    append_new_typemap_entry({"text": {"//....py"}}, m_server)
 
     m_get_typemap.assert_called_once_with(m_server)
-    m_add_type.assert_called_once_with(m_get_typemap.return_value, 'text', '//....py')
+    m_add_type.assert_called_once_with(m_get_typemap.return_value, "text", "//....py")
     m_save_typemap.assert_called_once_with(m_add_type.return_value, m_server, 0)
