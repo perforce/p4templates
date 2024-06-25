@@ -5,7 +5,31 @@
 
 ## Overview
 
-P4 Templates are a Python library to aid in the quick creation of p4 environments for studios that have quick turn around projects and need to deploy a standard setup often.
+This P4 Project Template Tool can be used to quickly setup and create a p4 environment for a new Perforce Helix Core project. Use this set of Python scripts to deploy a standard setup or build upon this script to create a customized template. This package also includes demo templates for Unreal Engine and Unity. 
+
+* Who Is the P4 Project Template Tool for? 
+
+  * Admins of studios that want to predefine a project structure standard and deploy that structure repeatedly. 
+
+
+
+* What Does the P4 Project Template Do? 
+
+  * Allows admin users to pre-define and deploy project templates which can create and connect new objects and definitions in your Helix Core server. 
+
+    * Users can create and define the following types of objects: depots, streams, user groups permission table entries, typemap table entries, and branches that can be used to prepopulate a new depot from an existing depot in your Helix Core server. 
+
+ 
+
+* How to Use P4 Project Templates 
+
+  * Once defined, users can easily reuse individual project style templates with variable definitions when creating and deploying similar future projects.  
+
+  * At any point a project template may be redefined and saved in place or as a new file if your project needs change. 
+
+ 
+
+See this video for how to setup and use here >> https://youtu.be/lxwCVbOLdag 
 
 ## Installation
 
@@ -131,7 +155,6 @@ python ./p4_template_tool.py
 ```
 * Upon loading the UI you will be presented with the template loader execution window. Any variable parameter will be lifted and shown in the field below the template selection drop down. Once all parameters have a valid value then you will be able to process the template. If you would like to edit a current template the `Edit` button will open the Edit Template window with the data for the currently selected template. This can then be either saved as the same file name or as a new name to create a copy. If you would like to create a new template, the `New` button will open the Edit Template window without any predefined values.
 
-* A video walkthrough of UI operation can be found [here](https://share.descript.com/view/qB7vWvmbhRO).
 
 ## EXE Build
 * If you have the pyinstaller requirements installed. `build_windows.bat` will create a self contained executable in the bin directory.
