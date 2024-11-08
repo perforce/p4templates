@@ -23,7 +23,7 @@ from __future__ import print_function
 
 def get_typemap(server):
     type_dict = {}
-    for entry in server.fetch_typemap()["TypeMap"]:
+    for entry in server.fetch_typemap().get("TypeMap", []):
         type_key, type_value = entry.split(" ")
         if type_key not in type_dict:
             type_dict[type_key] = set()
