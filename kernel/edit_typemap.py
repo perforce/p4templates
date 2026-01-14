@@ -24,7 +24,9 @@ from __future__ import print_function
 def get_typemap(server):
     type_dict = {}
     for entry in server.fetch_typemap().get("TypeMap", []):
-        type_key, type_value = entry.split(" ")
+        entry_split = entry.split(" ")
+        type_key = entry_split[0]
+        type_value = entry_split[1]
         if type_key not in type_dict:
             type_dict[type_key] = set()
         type_dict[type_key].add(type_value)
